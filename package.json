@@ -14,5 +14,5 @@
 	},
 	"homepage": "http://raft.mangoraft.com",
 	"author": "Tim <tim.dickinson@mangoraft.com>",
-	"license": "BSD"
+	"license": "MIT"
 }
