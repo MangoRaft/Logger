@@ -1,6 +1,7 @@
 /**
- * Raft Router
+ * Raft Logger
  *
  */
 
-module.exports = require('./lib/router/router')
+module.exports.Client = require('./lib/logger/client')
+module.exports.Server = require('./lib/logger/server')
