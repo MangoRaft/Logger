@@ -1,0 +1,18 @@
+{
+	"name": "raft-logger",
+	"version": "0.0.1",
+	"description": "Open Source PaaS built on Node.JS - Logger module",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MangoRaft/Logger.git"
+	},
+	"dependencies": {
+		"raft": "0.4.x",
+		"axon": "0.6.x",
+		"cli-color": "0.2.x"
+	},
+	"homepage": "http://raft.mangoraft.com",
+	"author": "Tim <tim.dickinson@mangoraft.com>",
+	"license": "BSD"
+}
