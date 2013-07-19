@@ -1,6 +1,6 @@
 {
 	"name": "raft-logger",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Open Source PaaS built on Node.JS - Logger module",
 	"main": "index.js",
 	"repository": {
@@ -11,6 +11,11 @@
 		"raft": "0.4.x",
 		"axon": "0.6.x",
 		"cli-color": "0.2.x"
+	},
+
+	"bin": {
+		"log-server": "./bin/log-server.js",
+		"log-cli": "./bin/log-cli.js"
 	},
 	"homepage": "http://raft.mangoraft.com",
 	"author": "Tim <tim.dickinson@mangoraft.com>",
