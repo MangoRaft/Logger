@@ -1,6 +1,6 @@
 {
 	"name": "raft-logger",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Open Source PaaS built on Node.JS - Logger module",
 	"main": "index.js",
 	"repository": {
@@ -8,7 +8,7 @@
 		"url": "https://github.com/MangoRaft/Logger.git"
 	},
 	"dependencies": {
-		"raft": "0.4.x",
+		"raft": "0.4.2",
 		"axon": "0.6.x",
 		"cli-color": "0.2.x"
 	},
