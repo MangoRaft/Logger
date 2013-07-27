@@ -1,6 +1,6 @@
 {
 	"name": "raft-logger",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Open Source PaaS built on Node.JS - Logger module",
 	"main": "index.js",
 	"repository": {
