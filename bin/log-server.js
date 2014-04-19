@@ -1,18 +1,27 @@
-#!/usr/bin/env node
+//z#!/usr/bin/env node
 
+var raft = require('raft');
 
+raft.start();
 
-
-var log = require('../')
-
-
-var server = new log.Server({
-	dir : process.cwd(),
-	pull : {
-		port : 3000
-	},
-	push : {
-		port : 3001
+raft.common.logo(function(err, logo){
+	if(err){
+		throw err
 	}
-})
-console.log('Log server running')
+	console.log('   * ');
+	console.log('   * '+logo.split('\n').join('\n   * '));
+	console.log('   * View logger for more infomation.');
+});
+
+var webServer = require('../lib/logger/webserver').createServer();
+webServer.start();
+
+var udpServer = require('../lib/logger/udpserver').createServer();
+udpServer.start();
+
+process.on('SIGTERM', function() {
+	console.log('SIGTERM received shutting down gracefully');
+	udpServer.stop();
+	webServer.stop();
+	console.log('Shutdown gracefully.');
+}); 

@@ -8,14 +8,14 @@
 		"url": "https://github.com/MangoRaft/Logger.git"
 	},
 	"dependencies": {
-		"raft": "0.4.2",
 		"axon": "0.6.x",
-		"cli-color": "0.2.x"
+		"cli-color": "0.2.x",
+		"express": "*",
+		"punt": "2.1.0"
 	},
 
 	"bin": {
-		"log-server": "./bin/log-server.js",
-		"log-cli": "./bin/log-cli.js"
+		"log-server": "./bin/log-server.js"
 	},
 	"homepage": "http://raft.mangoraft.com",
 	"author": "Tim <tim.dickinson@mangoraft.com>",
