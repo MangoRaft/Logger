@@ -3,6 +3,7 @@
  *
  */
 
-module.exports.Client = require('./lib/logger/client')
-module.exports.Server = require('./lib/logger/server')
 module.exports.Logger = require('./lib/logger/logger')
+module.exports.View = require('./lib/logger/log-viewer')
+module.exports.WebServer = require('./lib/logger/webserver')
+module.exports.UDPServer = require('./lib/logger/udpserver')
