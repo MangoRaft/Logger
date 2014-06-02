@@ -8,8 +8,10 @@
     "url": "https://github.com/MangoRaft/Logger.git"
   },
   "dependencies": {
+    "body-parser": "^1.2.0",
+    "connect": "^2.15.0",
     "eventemitter2": "^0.4.13",
-    "express": "^2.5.11",
+    "express": "3.x.x",
     "punt": "2.1.0",
     "raft": "*"
   },
