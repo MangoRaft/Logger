@@ -48,7 +48,7 @@ setInterval(function() {
 	workerLog.log('sadasd ' + (i++));
 }, 1000);
 
-fs.createReadStream('./sample_traffic.log').pipe(fsPipe);
+//fs.createReadStream('./sample_traffic.log').pipe(fsPipe);
 
 var view = logging.View.createView({
 	host : 'localhost',
