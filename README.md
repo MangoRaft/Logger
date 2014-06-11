@@ -36,7 +36,7 @@ Usage
 You can use logster through the command line or include it in your program.
 #### In your program
 To use logster in your program just `require` it. Most of the time you will only use the `Logger` or the `Viewer`
-```
+```javascript
 var logster = require('raft-logger');
 ```
 ### Logger
@@ -47,7 +47,7 @@ You need to pass in the web and udp port and host
 - **web.port** Required. Port for the web server.
 - **udp.host** Required. Host for the udp server.
 - **udp.port** Required. Port for the udp server.
-```
+```javascript
 var logger = logster.Logger.createLogger({
 	web : {
 		host : '127.0.0.1',
@@ -67,7 +67,7 @@ Once you have a logging instance you can create the per process logger.
 - **bufferSize** Optional. Defaults to 100 line. Used to buffer log line before sending in bulk. Set to `0` for real-time logging
 - **flushInterval** Optional. Defaults to 5000ms. Time intival to send logs in bulk
 
-```
+```javascript
 var workerLog = logger.create({
 	source : 'app',
 	channel : 'worker.1',
@@ -77,19 +77,19 @@ var workerLog = logger.create({
 });
 ```
 To start the `flushInterval` you must call `start()` 
-```
+```javascript
 workerLog.start();
 ```
 To stop the `flushInterval` you must call `stop()` 
-```
+```javascript
 workerLog.stop();
 ```
 To log a line just call `log()`
-```
+```javascript
 workerLog.log("my great text I need logged");
 ```
 The logging instance is designed to be used as a stream so you can pipe to it. This is useful for logging stdin, stdout and reading from a file.
-```
+```javascript
 fs.createReadStream('./sample_traffic.log').pipe(workerLog);
 ```
 ### View
@@ -100,7 +100,7 @@ Create a view call `View.createView({options})`
 - **port** Required. Port of the web server.
 - **session** Optional. Used for a pre-defined log session.
 - **backlog** Optional. Defaults to false. Used pull all the logs from the server. If false only new logs will be pulled.
-```
+```javascript
 var view = logging.View.createView({
 	host : 'localhost',
 	port : 3000,
