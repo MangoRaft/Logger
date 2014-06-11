@@ -1,8 +1,9 @@
-#!/usr/bin/env node
+//#!/usr/bin/env node
 
 var program = require('commander');
 var http = require('http');
 var fs = require('fs');
+var cluster = require('cluster');
 var logging = require('../');
 
 program.version(require('../package.json').version);
@@ -22,22 +23,22 @@ viewer.action(function(options) {
 		host : options.addr,
 		port : options.port,
 		session : options.session,
-		backlog : options.backlog?true:false
+		backlog : options.backlog ? true : false
 	});
 
 	view.start();
 
 	var filter = {
-		
+
 	};
-	
+
 	if (options.source) {
 		filter.source = options.source;
 	}
 	if (options.channel) {
 		filter.channel = options.channel;
 	}
-	
+
 	var stream = view.filter(filter);
 	if (options.file) {
 		stream.pipe(fs.createWriteStream(options.file, {
@@ -120,15 +121,58 @@ server.description('run setup commands for all envs');
 
 server.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 server.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
+server.option('-A, --redis-addr [HOST]', 'Connect to redis HOST address (default: 127.0.0.1)', '127.0.0.1');
+server.option('-P, --redis-port [PORT]', 'Connect to redis PORT (default: 6379)', 6379);
+server.option('-o, --redis-auth [PASSWORD]', 'Use redis auth');
+server.option('-w, --web', 'Start Web-Server', false);
+server.option('-u, --udp', 'Start UDP-Server', false);
+server.option('-c, --cluster', 'Start server as cluster', false);
 server.action(function(options) {
-	logging.WebServer.createServer({
-		host : options.addr,
-		port : options.port
-	}).start();
-	logging.UDPServer.createServer({
-		host : options.addr,
-		port : options.port
-	}).start();
+
+	var redis = {
+		host : options.redisAddr,
+		port : options.redisPort
+	};
+
+	if (options.redisAuth) {
+		redis.auth = options.redisAuth;
+	}
+
+	if (options.cluster) {
+		var numCPUs = require('os').cpus().length;
+		if (cluster.isMaster) {
+			for (var i = 0; i < numCPUs; i++)
+				cluster.fork();
+
+		} else {
+			web();
+			udp();
+		}
+	} else {
+		web();
+		udp();
+	}
+
+	function web() {
+		if (options.web) {
+			logging.WebServer.createServer({
+				host : options.addr,
+				port : options.port,
+				redis : redis
+			}).start();
+		}
+	}
+
+	function udp() {
+		if (options.udp) {
+			logging.UDPServer.createServer({
+				host : options.addr,
+				port : options.port,
+				redis : redis
+			}).start();
+		}
+	}
+
 });
 
 program.parse(process.argv);
