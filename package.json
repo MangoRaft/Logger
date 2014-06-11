@@ -1,25 +1,26 @@
 {
-	"name": "raft-logger",
-	"version": "0.2.7",
-	"description": "Open Source PaaS built on Node.JS - Logger module",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/MangoRaft/Logger.git"
-	},
-	"dependencies": {
-		"body-parser": "^1.2.0",
-		"commander": "^2.2.0",
-		"connect": "^2.15.0",
-		"eventemitter2": "^0.4.13",
-		"express": "3.x.x",
-		"punt": "2.1.0",
-		"uuid": "1.4.1"
-	},
-	"bin": {
-		"logster": "./bin/logster.js"
-	},
-	"homepage": "http://logger.mangoraft.ca",
-	"author": "Tim <mangoraft@gmail.com>",
-	"license": "MIT"
+  "name": "raft-logger-redis",
+  "version": "0.2.7",
+  "description": "Open Source PaaS built on Node.JS - Logger module",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MangoRaft/Logger.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.2.0",
+    "commander": "^2.2.0",
+    "connect": "^2.15.0",
+    "eventemitter2": "^0.4.13",
+    "express": "3.x.x",
+    "punt": "2.1.0",
+    "redis": "^0.10.3",
+    "uuid": "1.4.1"
+  },
+  "bin": {
+    "logster": "./bin/logster.js"
+  },
+  "homepage": "http://logger.mangoraft.ca",
+  "author": "Tim <mangoraft@gmail.com>",
+  "license": "MIT"
 }
