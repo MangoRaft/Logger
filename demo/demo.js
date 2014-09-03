@@ -31,7 +31,7 @@ var workerLog = logger.create({
 	source : 'app',
 	channel : 'worker.1',
 	session : id,
-	bufferSize : 1
+	//bufferSize : 1
 });
 var fsPipe = logger.create({
 	source : 'app',
@@ -43,12 +43,15 @@ fsPipe.start();
 
 var i = 0;
 
-workerLog.log('sadasd ' + (i++));
-setInterval(function() {
+workerLog.log('sadasd ');
+workerLog.time('sadasd ');
+setTimeout(function() {
 	workerLog.log('sadasd ' + (i++));
+	workerLog.timeEnd('sadasd ');
+	workerLog.trace();
 }, 1000);
 
-//fs.createReadStream('./sample_traffic.log').pipe(fsPipe);
+fs.createReadStream('./sample_traffic.log').pipe(fsPipe);
 
 var view = logging.View.createView({
 	host : 'localhost',
