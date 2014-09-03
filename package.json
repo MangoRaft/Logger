@@ -1,11 +1,11 @@
 {
   "name": "raft-logger-redis",
-  "version": "0.1.0",
+  "version": "0.1.1-pre2",
   "description": "Open Source PaaS built on Node.JS - Logger module",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MangoRaft/Logger.git"
+    "url": "https://github.com/MangoRaft/Logger/tree/redis"
   },
   "dependencies": {
     "body-parser": "^1.2.0",
@@ -18,7 +18,7 @@
     "uuid": "1.4.1"
   },
   "bin": {
-    "logster": "./bin/logster-redis.js"
+    "logster-redis": "./bin/logster.js"
   },
   "homepage": "http://logger.mangoraft.ca",
   "author": "Tim <mangoraft@gmail.com>",
