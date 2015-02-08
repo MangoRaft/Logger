@@ -9,7 +9,7 @@ var logging = require('../');
 program.version(require('../package.json').version);
 
 var viewer = program.command('view');
-viewer.description('run setup commands for all envs');
+viewer.description('View logs in teal-time.');
 
 viewer.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 viewer.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
@@ -51,14 +51,14 @@ viewer.action(function(options) {
 });
 
 var logger = program.command('log');
-logger.description('run setup commands for all envs');
+logger.description('Send logs to the server.');
 logger.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 logger.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
 logger.option('-S, --source [SOURCE]', 'Source to use (default: stdin)', 'stdin');
 logger.option('-c, --channel [CHANNEL]', 'Channel to use (default: process.1)', 'process.1');
 logger.option('-e, --session [SESSION]', 'session to use (default: SESSION)', 'SESSION');
 logger.option('-b, --bufferSize [SIZE]', 'bufferSize to use (default: 100)', 100);
-logger.option('-f, --flushInterval [SIZE]', 'bufferSize to use (default: 5000ms)', 5000);
+logger.option('-f, --flushInterval [SIZE]', 'Interval to flush the buffer (default: 5000ms)', 5000);
 logger.action(function(options) {
 
 	var filter = {
@@ -84,7 +84,7 @@ logger.action(function(options) {
 });
 
 var register = program.command('register');
-register.description('run setup commands for all envs');
+register.description('Register a log session with the server.');
 
 register.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 register.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
@@ -117,7 +117,7 @@ register.action(function(options) {
 });
 
 var server = program.command('server');
-server.description('run setup commands for all envs');
+server.description('Run the log server.');
 
 server.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 server.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);

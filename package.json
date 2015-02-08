@@ -1,7 +1,7 @@
 {
   "name": "raft-logger-redis",
-  "version": "0.1.1-pre2",
-  "description": "Open Source PaaS built on Node.JS - Logger module",
+  "version": "0.2.1",
+  "description": "Distributed logging service",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -18,8 +18,14 @@
     "uuid": "1.4.1"
   },
   "bin": {
-    "logster-redis": "./bin/logster.js"
+    "logster": "./bin/logster.js"
   },
+  "keywords": [
+    "distributed",
+    "logging",
+    "service",
+    "redis"
+  ],
   "homepage": "http://logger.mangoraft.ca",
   "author": "Tim <mangoraft@gmail.com>",
   "license": "MIT"

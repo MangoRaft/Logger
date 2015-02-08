@@ -92,6 +92,12 @@ The logging instance is designed to be used as a stream so you can pipe to it. T
 ```javascript
 fs.createReadStream('./sample_traffic.log').pipe(workerLog);
 ```
+Pipe the output of a program to the log server.
+```
+ps | logster-redis log
+```
+
+
 ### View
 The viewer is used to retrive logs from the server.
 Create a view call `View.createView({options})`
@@ -100,6 +106,7 @@ Create a view call `View.createView({options})`
 - **port** Required. Port of the web server.
 - **session** Optional. Used for a pre-defined log session.
 - **backlog** Optional. Defaults to false. Used pull all the logs from the server. If false only new logs will be pulled.
+
 ```javascript
 var view = logging.View.createView({
 	host : 'localhost',
@@ -107,4 +114,144 @@ var view = logging.View.createView({
 	session : 'my-session-id', //Optional 
 	backlog : true  //Optional defaults to false
 });
+```
+
+Subscribe for the ```data``` event
+```javascript
+view.on('data', function(data) {
+	console.log(data);  
+	//{ ts: 1423363927109,
+	// channel: 'worker.1',
+	// source: 'app',
+	// msg: 'setInterval 2' }
+});
+```
+Start listening for log data.
+```javascript
+view.start();
+```
+
+### CLI
+We have a cli program that can be used to setup and use the logging service
+
+#### Help
+```
+$ logster-redis -h
+
+  Usage: logster-redis [options] [command]
+
+
+  Commands:
+
+    view [options]       View logs in teal-time.
+    log [options]        Send logs to the server.
+    register [options]   Register a log session with the server.
+    server [options]     Run the log server.
+
+  Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
+
+```
+
+#### Server
+Starting the server is the first thing you want to do.
+The servers are setup to scale. You can run it as a cluster or run each part on different servers.
+```
+$ logster-redis server -h
+
+  Usage: server [options]
+
+  run setup commands for all envs
+
+  Options:
+
+    -h, --help                   output usage information
+    -a, --addr [HOST]            Bind to HOST address (default: 127.0.0.1)
+    -p, --port [PORT]            Use PORT (default: 5000)
+    -A, --redis-addr [HOST]      Connect to redis HOST address (default: 127.0.0.1)
+    -P, --redis-port [PORT]      Connect to redis PORT (default: 6379)
+    -o, --redis-auth [PASSWORD]  Use redis auth
+    -w, --web                    Start Web-Server
+    -u, --udp                    Start UDP-Server
+    -c, --cluster                Start server as cluster
+
+```
+#####Example
+```
+$ logster-redis server -w -u -c
+```
+#### View
+Using `-f` to wire the logs to file for persistan storage.
+```
+$ logster-redis view -h
+
+  Usage: view [options]
+
+  run setup commands for all envs
+
+  Options:
+
+    -h, --help               output usage information
+    -a, --addr [HOST]        Bind to HOST address (default: 127.0.0.1)
+    -p, --port [PORT]        Use PORT (default: 5000)
+    -S, --source [SOURCE]    Source to use (database)
+    -c, --channel [CHANNEL]  Channel to use (redis.1)
+    -e, --session [SESSION]  Session to use (default: SESSION)
+    -b, --backlog            Retrieve all logs from the server (default: false)
+    -f, --file [FILE]        File to write to
+
+````
+#####Example
+```
+$ logster-redis view -b -e my-session-token -f /path/to/file.log
+```
+
+#### Log
+```
+$ logster-redis log -h
+
+  Usage: log [options]
+
+  run setup commands for all envs
+
+  Options:
+
+    -h, --help                  output usage information
+    -a, --addr [HOST]           Bind to HOST address (default: 127.0.0.1)
+    -p, --port [PORT]           Use PORT (default: 5000)
+    -S, --source [SOURCE]       Source to use (default: stdin)
+    -c, --channel [CHANNEL]     Channel to use (default: process.1)
+    -e, --session [SESSION]     session to use (default: SESSION)
+    -b, --bufferSize [SIZE]     bufferSize to use (default: 100)
+    -f, --flushInterval [SIZE]  Interval to flush the buffer (default: 5000ms)
+```
+#####Example
+```
+$ ps | logster-redis log -e my-session-token
+```
+```
+$ cat /path/to/file.log | logster-redis log -e my-session-token -s my-custom-source -c dev-server.1
+```
+
+#### Register
+If you want to register a session token but dont want to use it yet.
+```
+$ logster-redis register -h
+
+  Usage: register [options]
+
+  run setup commands for all envs
+
+  Options:
+
+    -h, --help               output usage information
+    -a, --addr [HOST]        Bind to HOST address (default: 127.0.0.1)
+    -p, --port [PORT]        Use PORT (default: 5000)
+    -e, --session [SESSION]  session to use (default: SESSION)
+```
+#####Example
+```
+$ logster-redis register -e my-custom-session
 ```

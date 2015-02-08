@@ -31,15 +31,9 @@ var workerLog = logger.create({
 	source : 'app',
 	channel : 'worker.1',
 	session : id,
-	//bufferSize : 1
-});
-var fsPipe = logger.create({
-	source : 'app',
-	channel : 'fs.1',
-	session : id
+	bufferSize : 1
 });
 workerLog.start();
-fsPipe.start();
 
 var i = 0;
 
@@ -51,7 +45,10 @@ setTimeout(function() {
 	workerLog.trace();
 }, 1000);
 
-fs.createReadStream('./sample_traffic.log').pipe(fsPipe);
+setInterval(function() {
+	workerLog.log('setInterval ' + (i++));
+
+}, 1000)
 
 var view = logging.View.createView({
 	host : 'localhost',
