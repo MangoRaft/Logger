@@ -88,10 +88,29 @@ To log a line just call `log()`
 ```javascript
 workerLog.log("my great text I need logged");
 ```
+Mark a time. Finish timer, record output.
+```
+workerLog.time('my-timmer');
+setTimeout(function() {
+	workerLog.timeEnd('my-timmer');
+}, 1000);
+```
+Print to stderr 'Trace :', followed by the formatted message and stack trace to the current position.
+```
+workerLog.trace();
+```
+Uses `util.inspect` on obj and prints resulting string to stdout. This function bypasses any custom `inspect()` function on `obj`. 
+```
+workerLog.dir(obj);
+```
+
+
 The logging instance is designed to be used as a stream so you can pipe to it. This is useful for logging stdin, stdout and reading from a file.
 ```javascript
 fs.createReadStream('./sample_traffic.log').pipe(workerLog);
 ```
+
+
 Pipe the output of a program to the log server.
 ```
 ps | logster-redis log
@@ -233,6 +252,9 @@ $ ps | logster-redis log -e my-session-token
 ```
 ```
 $ cat /path/to/file.log | logster-redis log -e my-session-token -s my-custom-source -c dev-server.1
+```
+```
+$ tail /path/to/file.log | logster-redis log -e my-session-token -s my-custom-source -c dev-server.1
 ```
 
 #### Register
