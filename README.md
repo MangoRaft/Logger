@@ -80,14 +80,17 @@ To start the `flushInterval` you must call `start()`
 ```javascript
 workerLog.start();
 ```
+
 To stop the `flushInterval` you must call `stop()` 
 ```javascript
 workerLog.stop();
 ```
+
 To log a line just call `log()`
 ```javascript
 workerLog.log("my great text I need logged");
 ```
+
 Mark a time. Finish timer, record output.
 ```javascript
 workerLog.time('my-timmer');
@@ -95,15 +98,16 @@ setTimeout(function() {
 	workerLog.timeEnd('my-timmer');
 }, 1000);
 ```
-Print to stderr 'Trace :', followed by the formatted message and stack trace to the current position.
+
+Print to stderr `Trace :`, followed by the formatted message and stack trace to the current position.
 ```javascript
 workerLog.trace();
 ```
-Uses `util.inspect` on obj and prints resulting string to stdout. This function bypasses any custom `inspect()` function on `obj`. 
+
+Uses `util.inspect` on obj and prints resulting string to log server. This function bypasses any custom `inspect()` function on `obj`. 
 ```javascript
 workerLog.dir(obj);
 ```
-
 
 The logging instance is designed to be used as a stream so you can pipe to it. This is useful for logging stdin, stdout and reading from a file.
 ```javascript
@@ -142,7 +146,7 @@ view.on('data', function(data) {
 	//{ ts: 1423363927109,
 	// channel: 'worker.1',
 	// source: 'app',
-	// msg: 'setInterval 2' }
+	// msg: '...' }
 });
 ```
 Start listening for log data.
