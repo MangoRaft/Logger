@@ -1,6 +1,6 @@
 {
 	"name": "raft-logger-redis",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"description": "Distributed logging service",
 	"main": "index.js",
 	"repository": {
@@ -15,7 +15,8 @@
 		"express": "3.x.x",
 		"punt": "2.2.0",
 		"redis": "^0.10.3",
-		"uuid": "1.4.1"
+		"uuid": "1.4.1",
+		"async": "0.9.x"
 	},
 	"bin": {
 		"logster": "./bin/logster.js"
