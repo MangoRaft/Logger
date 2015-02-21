@@ -15,7 +15,7 @@ Install
 To install Logster you can use `npm` or `git clone`
 #### <i class="icon-file"></i> NPM
 ```
-$ sudo npm install -g raft-logger
+$ sudo npm install -g raft-logger-redis
 ```
 
 #### <i class="icon-file"></i> GIT
