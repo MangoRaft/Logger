@@ -121,12 +121,14 @@ server.description('Run the log server.');
 
 server.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 server.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
+server.option('-p, --port-udp [PORT-UDP]', 'Use PORT (default: 5000)', 5001);
 server.option('-A, --redis-addr [HOST]', 'Connect to redis HOST address (default: 127.0.0.1)', '127.0.0.1');
 server.option('-P, --redis-port [PORT]', 'Connect to redis PORT (default: 6379)', 6379);
 server.option('-o, --redis-auth [PASSWORD]', 'Use redis auth');
 server.option('-w, --web', 'Start Web-Server', false);
 server.option('-u, --udp', 'Start UDP-Server', false);
 server.option('-c, --cluster', 'Start server as cluster', false);
+server.option('-l, --limit', 'Limit logs stored (default: 2500)', 2500);
 server.action(function(options) {
 
 	var redis = {
@@ -158,7 +160,8 @@ server.action(function(options) {
 			logging.WebServer.createServer({
 				host : options.addr,
 				port : options.port,
-				redis : redis
+				redis : redis,
+				limit : options.limit
 			}).start();
 		}
 	}
@@ -167,7 +170,7 @@ server.action(function(options) {
 		if (options.udp) {
 			logging.UDPServer.createServer({
 				host : options.addr,
-				port : options.port,
+				port : options.portUdp,
 				redis : redis
 			}).start();
 		}
@@ -177,3 +180,4 @@ server.action(function(options) {
 
 program.parse(process.argv);
 
+if (!program.args.length) program.help();
