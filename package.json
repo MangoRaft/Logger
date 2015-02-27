@@ -1,6 +1,6 @@
 {
 	"name": "raft-logger-redis",
-	"version": "0.2.8",
+	"version": "0.2.9",
 	"description": "Distributed logging service",
 	"main": "index.js",
 	"repository": {
