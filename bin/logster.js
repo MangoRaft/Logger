@@ -54,6 +54,8 @@ var logger = program.command('log');
 logger.description('Send logs to the server.');
 logger.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 logger.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
+logger.option('-a, --addr-udp [HOST-UDP]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
+server.option('-p, --port-udp [PORT-UDP]', 'Use PORT (default: 5001)', 5001);
 logger.option('-S, --source [SOURCE]', 'Source to use (default: stdin)', 'stdin');
 logger.option('-c, --channel [CHANNEL]', 'Channel to use (default: process.1)', 'process.1');
 logger.option('-e, --session [SESSION]', 'session to use (default: SESSION)', 'SESSION');
@@ -76,8 +78,8 @@ logger.action(function(options) {
 			port : options.port
 		},
 		udp : {
-			host : options.addr,
-			port : options.port
+			host : options.addrUdp,
+			port : options.portUdp
 		}
 	}).create(filter));
 
@@ -121,7 +123,7 @@ server.description('Run the log server.');
 
 server.option('-a, --addr [HOST]', 'Bind to HOST address (default: 127.0.0.1)', '127.0.0.1');
 server.option('-p, --port [PORT]', 'Use PORT (default: 5000)', 5000);
-server.option('-p, --port-udp [PORT-UDP]', 'Use PORT (default: 5000)', 5001);
+server.option('-p, --port-udp [PORT-UDP]', 'Use PORT (default: 5001)', 5001);
 server.option('-A, --redis-addr [HOST]', 'Connect to redis HOST address (default: 127.0.0.1)', '127.0.0.1');
 server.option('-P, --redis-port [PORT]', 'Connect to redis PORT (default: 6379)', 6379);
 server.option('-o, --redis-auth [PASSWORD]', 'Use redis auth');
