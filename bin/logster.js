@@ -7,7 +7,9 @@ var cluster = require('cluster');
 var logging = require('../');
 
 program.version(require('../package.json').version);
-
+process.on('uncaughtException', function(err) {
+ console.log(err)
+});
 var viewer = program.command('view');
 viewer.description('View logs in teal-time.');
 
