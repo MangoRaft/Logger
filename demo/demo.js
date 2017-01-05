@@ -47,8 +47,7 @@ setTimeout(function() {
 
 setInterval(function() {
 	workerLog.log('setInterval ' + (i++));
-
-}, 1000)
+}, 1000);
 
 var view = logging.View.createView({
 	host : 'localhost',
