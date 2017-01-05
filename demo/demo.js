@@ -53,10 +53,16 @@ setInterval(function() {
 var view = logging.View.createView({
 	host : 'localhost',
 	port : 3000,
-	session : id
+	session : id,
+	ws : false
 });
 
-view.start();
 view.on('data', function(data) {
 	console.log(data);
 });
+setTimeout(function() {
+	view.end()
+}, 5000);
+
+
+view.start();

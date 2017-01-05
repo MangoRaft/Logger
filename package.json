@@ -1,28 +1,34 @@
 {
-	"name": "raft-logger-redis",
-	"version": "0.2.14",
-	"description": "Distributed logging service",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/MangoRaft/Logger/tree/redis"
-	},
-	"dependencies": {
-		"body-parser": "^1.2.0",
-		"commander": "^2.2.0",
-		"connect": "^2.15.0",
-		"eventemitter2": "^0.4.13",
-		"express": "3.x.x",
-		"punt": "2.2.0",
-		"redis": "^0.10.3",
-		"uuid": "1.4.1",
-		"async": "0.9.x"
-	},
-	"bin": {
-		"logster": "./bin/logster.js"
-	},
-	"keywords": ["distributed", "logging", "service", "redis"],
-	"homepage": "http://logger.mangoraft.ca",
-	"author": "Tim <mangoraft@gmail.com>",
-	"license": "MIT"
+  "name": "raft-logger-redis",
+  "version": "0.2.15",
+  "description": "Distributed logging service",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MangoRaft/Logger/tree/redis"
+  },
+  "dependencies": {
+    "async": "0.9.x",
+    "body-parser": "^1.2.0",
+    "commander": "^2.2.0",
+    "connect": "^2.15.0",
+    "eventemitter2": "^0.4.13",
+    "express": "3.x.x",
+    "punt": "2.2.0",
+    "redis": "^0.10.3",
+    "uuid": "1.4.1",
+    "ws": "^1.1.1"
+  },
+  "bin": {
+    "logster": "./bin/logster.js"
+  },
+  "keywords": [
+    "distributed",
+    "logging",
+    "service",
+    "redis"
+  ],
+  "homepage": "http://logger.mangoraft.ca",
+  "author": "Tim <mangoraft@gmail.com>",
+  "license": "MIT"
 }
