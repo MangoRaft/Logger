@@ -39,6 +39,15 @@ To use logster in your program just `require` it. Most of the time you will only
 ```javascript
 var logster = require('raft-logger');
 ```
+
+####Docker install
+Two line docker install.
+
+```
+$ docker run -d  -m 100M  --cpuset-cpus="1"  --name logs-redis tutum/redis
+$ docker run -d  -m 500M  --cpuset-cpus="2,3"  -p 5000:5000  -p 5000:5001/udp --link logs-redis:db --name logs mangoraft/logster:0.2.16
+```
+
 ### Logger
 To use the logger you need to create a logger
 You need to pass in the web and udp port and host

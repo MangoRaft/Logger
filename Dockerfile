@@ -1,5 +1,5 @@
 
-from   dockerfile/nodejs
+from   node:6.9
 
 
 
